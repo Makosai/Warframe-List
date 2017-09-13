@@ -45,8 +45,17 @@
 }
 
 td.image {
-  width:150px;
-  text-align:center;
+  width:500px;
+  text-align:left;
+  font-weight:bold;
+}
+
+td.image img {
+  width:65px;
+  height:65px;
+  background-color:rgba(27,26,26,0.21);
+  display:inline-block;
+  margin:5px;
 }
 
 td.name-choice {
@@ -56,5 +65,11 @@ td.name-choice {
 
 #content tr:not(.head):hover {
   background-color:#ccc;
+}
+
+span {
+  vertical-align:middle;
+  align-self:center;
+  line-height:65px;
 }
 
