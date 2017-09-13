@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warframe List</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/content.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <div class="highlight-clean">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">Warframe List</h2></div>
+            <div id="buttons" class="buttons">
+                <button class="btn btn-primary" type="button" id="warframe-button">Warframe</button>
+                <button class="btn btn-default" type="button" id="primary-button">Primary</button>
+                <button class="btn btn-default" type="button" id="secondary-button">Secondary</button>
+                <button class="btn btn-default" type="button" id="melee-button">Melee</button>
+                <button class="btn btn-default" type="button" id="sentinel-button">Sentinel</button>
+                <button class="btn btn-default" type="button" id="companions-button">Companions</button>
+                <button class="btn btn-default" type="button" id="archwing-button">ArchWing</button>
+                <button class="btn btn-default" type="button" id="archgun-button">Arch-Gun</button>
+                <button class="btn btn-default" type="button" id="archmelee-button">Arch-Melee</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="content">
+            <div id="warframe-content">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr class="head">
+                                <th>Warframes</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="image"><img class="img-rounded img-responsive" src="" alt="Ash" width="100" height="100"></td>
+                                <td class="name-choice"><span><label class="checkbox-inline"><input type="checkbox">Ash</label></span></td>
+                            </tr>
+                            <tr>
+                                <td class="image"><img class="img-rounded img-responsive" src="assets/img//AshPrimePromo.jpg" alt="Ash Prime" width="100" height="100"></td>
+                                <td class="name-choice"><span><label class="checkbox-inline"><input type="checkbox">Ash Prime</label></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="primary-content"></div>
+            <div id="secondary-content"></div>
+            <div id="melee-content"></div>
+            <div id="sentinel-content"></div>
+            <div id="companions-content"></div>
+            <div id="archwing-content"></div>
+            <div id="archgun-content"></div>
+            <div id="archmelee-content"></div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+#content {
+}
+
+#warframe-content {
+}
+
+#primary-content {
+  display:none;
+}
+
+#secondary-content {
+  display:none;
+}
+
+#melee-content {
+  display:none;
+}
+
+#sentinel-content {
+  display:none;
+}
+
+#companions-content {
+  display:none;
+}
+
+#archwing-content {
+  display:none;
+}
+
+#archgun-content {
+  display:none;
+}
+
+#archmelee-content {
+  display:none;
+}
+
+#content input[type="checkbox"] {
+  width:20px;
+  height:20px;
+  position:relative;
+  float:right;
+  margin-left:10px;
+}
+
+td.image {
+  width:150px;
+  text-align:center;
+}
+
+td.name-choice {
+  text-align:right;
+  line-height:100px;
+}
+
+#content tr:not(.head):hover {
+  background-color:#ccc;
+}
+
