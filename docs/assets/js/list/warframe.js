@@ -58,10 +58,10 @@ function exportWarframes() {
 
 // A list of all warframes and corresponding data.
 var warframes = {
-    "Ash": {image: "Ash.png", /* crafted: false, level: 0 */},
+    "Ash": { image: "Ash.png", /* crafted: false, level: 0 */},
     "Ash Prime": {},
     
-    "Atlas": {},
+    "Atlas": { image : "Atlas.png" },
     
     "Banshee": {},
     "Banshee Prime": {},

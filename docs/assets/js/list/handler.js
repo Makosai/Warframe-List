@@ -16,7 +16,7 @@ function strip(string) {
 // TODO: Use a shorter format (attach a number to each index and reference 1 = ash, and set ash's value based on the query index '1')
 function exportAll() {
     var allExports = warframesExport/* + '&' + primaryExport */;
-    history.pushState(null, null, 'index.html?' + allExports);
+    history.pushState(null, null, '?' + allExports);
 }
 
 // Loads the query data back into the JSON.
