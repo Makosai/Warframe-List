@@ -9,10 +9,19 @@ function loadWarframes() {
         var image = "assets/img/" + (warframe.hasOwnProperty('image') ? 'Warframes/' + warframe.image : 'nani.png');
         var cellName = strip(name) + '-cell';
         
-        row = $('<tr id="' + cellName + '"></tr>');
-        imgCell = $('<td class="image"><img class="img-circle img-responsive" src="' + image + '" alt="' + name + '" width="65" height="65" />' + name + '</td>');
-        boxCell = $('<td class="name-choice"><span><label class="checkbox-inline"><input type="checkbox" /></label></span></td>');
-
+        var row = $('<tr id="' + cellName + '"></tr>');
+        var imgCell = $('<td class="image"><img class="img-circle img-responsive" src="' + image + '" alt="' + name + '" width="65" height="65" />' + name + '</td>');
+        var boxCell = $('<td class="name-choice"></td>');
+        var craftBox = $('<span><label class="checkbox-inline"><input type="checkbox" /></label></span>');
+        var orokin = $('<span class="orokin-reactor img-responsive"></span>');
+        var forma = $('<i class="forma-counter fa fa-minus-circle forma-down" aria-hidden="true"></i>'
+                      + '<span class="forma img-responsive"></span>' +
+                      '<i class="forma-counter fa fa-plus-circle forma-up" aria-hidden="true"></i>');
+        
+        $(boxCell).append(forma);
+        $(boxCell).append(orokin);
+        $(boxCell).append(craftBox);
+        
         $(row).append(imgCell);
         $(row).append(boxCell);
         
@@ -23,6 +32,28 @@ function loadWarframes() {
             exportWarframes();
         });
         
+        $(boxCell).find('input').click(function() {
+            var input = $(this);
+            input.prop('checked', !input.is(':checked'));
+            warframe.crafted = input.is(':checked');
+            exportWarframes();
+        });
+        
+        var formaObj = $(boxCell).find('.forma');
+        
+        $(boxCell).find('.forma-up').click(function() {
+            incForma(MAX_FORMA, $(boxCell).find('.forma'), warframe);
+            refreshForma(formaObj, warframe);
+            exportWarframes();
+            return false;
+        });
+        
+        $(boxCell).find('.forma-down').click(function() {
+            decForma(MIN_FORMA, formaObj, warframe);
+            refreshForma(formaObj, warframe);
+            exportWarframes();
+            return false;
+        });
 
         $("#warframe-content tbody").append(row);
         
@@ -33,6 +64,13 @@ function loadWarframes() {
             var input = $('#' + cellName + ' input');
             input.prop('checked', true);
         }
+        
+        if(!warframe.hasOwnProperty('forma')) {
+            warframe.forma = 0;
+        }
+        
+        $(boxCell).find('.forma').html('x' + warframe.forma);
+        refreshForma(formaObj, warframe);
     });
 }
 
@@ -46,7 +84,8 @@ function exportWarframes() {
             exportText.push(
                 strip(key) + 'Crafted=' + warframe.crafted
                 + '&' +
-                strip(key) + 'Level=' + 0);
+                strip(key) + 'Level=' + 0 +
+                ((warframe.forma > 0) ? ('&' + strip(key) + 'Forma=' + warframe.forma) : ''));
         }
     });
     

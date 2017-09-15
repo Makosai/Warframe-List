@@ -7,6 +7,34 @@ function crafted(item) {
     }
 }
 
+function refreshForma(elem, obj) {
+    if(obj.forma <= 0) {
+        elem.css('background-position', 'center bottom');
+    } else if(obj.forma > 0) {
+        elem.css('background-position', 'center top');
+    }
+}
+
+function incForma(max, elem, obj) {    
+    if(obj.forma < max) {
+        obj.forma++;
+        elem.html('x' + obj.forma);   
+    }
+    
+    if(!obj.crafted) {
+        var input = elem.parent().find('input');   
+        input.prop('checked', true);
+        obj.crafted = true;
+    }
+}
+
+function decForma(min, elem, obj) {
+    if(obj.forma > min) {
+        obj.forma--;
+        elem.html('x' + obj.forma);   
+    }
+}
+
 // Strips spaces and makes the string lowercase.
 function strip(string) {
     return string.toLowerCase().replace(/\s/g, '');

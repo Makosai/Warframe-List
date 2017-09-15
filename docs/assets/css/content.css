@@ -45,7 +45,6 @@
 }
 
 td.image {
-  width:500px;
   text-align:left;
   font-weight:bold;
 }
@@ -71,5 +70,36 @@ span {
   vertical-align:middle;
   align-self:center;
   line-height:65px;
+}
+
+.orokin-reactor {
+  background-position:center top;
+  display:inline-block;
+  width:50px;
+  height:33px;
+  background-size:50px;
+  background-image:url(../img/Orokin_Reactor.png);
+  background-repeat:no-repeat;
+  margin:0px 7px 0px 24px;
+}
+
+.forma {
+  background-position:center top;
+  display:inline-block;
+  width:50px;
+  height:33px;
+  background-size:50px;
+  background-image:url(../img/Forma.png);
+  background-repeat:no-repeat;
+  margin:0px 7px 0px 7px;
+}
+
+.forma-counter {
+  font-size:25px !important;
+  vertical-align:middle;
+}
+
+tr {
+  user-select:none;
 }
 
