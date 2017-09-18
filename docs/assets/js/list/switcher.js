@@ -13,10 +13,14 @@ var contents = [
 function showContent(name) {
     console.log(1);
     contents.forEach(function(content) {
-        if(content == name)
+        if(content == name) {
             $('#' + content + '-content').css('display', 'block');
-        else
+            $('#' + content + '-button').attr('class', 'btn btn-primary');
+        }
+        else {
             $('#' + content + '-content').css('display', 'none');
+            $('#' + content + '-button').attr('class', 'btn btn-default');
+        }
     });
 }
 
