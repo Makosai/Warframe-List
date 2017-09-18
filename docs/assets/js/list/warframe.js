@@ -6,17 +6,26 @@ function loadWarframes() {
         
         var warframe = warframes[key];
         var name = key;
-        var image = "assets/img/" + (warframe.hasOwnProperty('image') ? 'Warframes/' + warframe.image : 'nani.png');
+        var image = 'assets/img/Warframes/' + key + '.png';
         var cellName = strip(name) + '-cell';
+        var orokinType = 'Reactor';
         
         var row = $('<tr id="' + cellName + '"></tr>');
         var imgCell = $('<td class="image"><img class="img-circle img-responsive" src="' + image + '" alt="' + name + '" width="65" height="65" />' + name + '</td>');
+        imgCell.find('img').error(function() {
+            $(this).attr('src', 'assets/img/nani.png');
+        });
+        
         var boxCell = $('<td class="name-choice"></td>');
-        var craftBox = $('<span><label class="checkbox-inline"><input type="checkbox" /></label></span>');
-        var orokin = $('<span class="orokin-reactor img-responsive"></span>');
-        var forma = $('<i class="forma-counter fa fa-minus-circle forma-down" aria-hidden="true"></i>'
-                      + '<span class="forma img-responsive"></span>' +
-                      '<i class="forma-counter fa fa-plus-circle forma-up" aria-hidden="true"></i>');
+        var craftBox = $('<span class="selector"><label class="checkbox-inline"><input type="checkbox" /></label></span>');
+        var orokin = $('<div class="orokin-holder">' +
+                       '<span class="orokin-' + orokinType.toLowerCase() + ' img-responsive"></span>' +
+                       '</div>');
+        var forma = $('<div class="forma-holder">' +
+                      '<i class="forma-counter fa fa-minus-circle forma-down" aria-hidden="true"></i>' +
+                      '<span class="forma img-responsive"></span>' +
+                      '<i class="forma-counter fa fa-plus-circle forma-up" aria-hidden="true"></i>' +
+                      '</div>');
         
         $(boxCell).append(forma);
         $(boxCell).append(orokin);
@@ -54,6 +63,14 @@ function loadWarframes() {
             exportWarframes();
             return false;
         });
+        
+        var orokinObj = $(boxCell).find('.orokin-reactor');
+        
+        orokinObj.click(function() {
+            toggleOrokin($(this), warframe);
+            exportWarframes();
+            return false; 
+        });
 
         $("#warframe-content tbody").append(row);
         
@@ -69,8 +86,13 @@ function loadWarframes() {
             warframe.forma = 0;
         }
         
+        if(!warframe.hasOwnProperty('orokin')) {
+            warframe.orokin = false;
+        }
+        
         $(boxCell).find('.forma').html('x' + warframe.forma);
         refreshForma(formaObj, warframe);
+        refreshOrokin(orokinObj, warframe);
     });
 }
 
@@ -82,10 +104,11 @@ function exportWarframes() {
         
         if(crafted(warframe)) {
             exportText.push(
-                strip(key) + 'Crafted=' + warframe.crafted
-                + '&' +
-                strip(key) + 'Level=' + 0 +
-                ((warframe.forma > 0) ? ('&' + strip(key) + 'Forma=' + warframe.forma) : ''));
+                warframe.id + '=' +
+                (warframe.crafted ? 1 : 0) + // Crafted
+                pad(warframe.forma, 2) + // Forma
+                (warframe.orokin ? 1 : 0)
+            );
         }
     });
     
@@ -97,87 +120,87 @@ function exportWarframes() {
 
 // A list of all warframes and corresponding data.
 var warframes = {
-    "Ash": { image: "Ash.png", /* crafted: false, level: 0 */},
-    "Ash Prime": {},
+    "Ash": { id: 0 /* crafted: false, level: 0 */},
+    "Ash Prime": { id: 1 },
     
-    "Atlas": { image : "Atlas.png" },
+    "Atlas": { id: 2 },
     
-    "Banshee": {},
-    "Banshee Prime": {},
+    "Banshee": { id: 3 },
+    "Banshee Prime": { id: 4 },
     
-    "Chroma": {},
+    "Chroma": { id: 5 },
     
-    "Ember": {},
-    "Ember Prime": {},
+    "Ember": { id: 6 },
+    "Ember Prime": { id: 7 },
     
-    "Equinox": {},
+    "Equinox": { id: 8 },
     
-    "Excalibur": {},
-    "Excalibur Prime": {},
+    "Excalibur": { id: 9 },
+    "Excalibur Prime": { id: 10 },
     
-    "Frost": {},
-    "Frost Prime": {},
+    "Frost": { id: 11 },
+    "Frost Prime": { id: 12 },
     
-    "Harrow": {},
+    "Harrow": { id: 13 },
     
-    "Hydroid": {},
-    "Hydroid Prime": {},
+    "Hydroid": { id: 14 },
+    "Hydroid Prime": { id: 15 },
     
-    "Inaros": {},
+    "Inaros": { id: 16 },
     
-    "Ivara": {},
+    "Ivara": { id: 17 },
     
-    "Limbo": {},
+    "Limbo": { id: 18 },
     
-    "Loki": {},
-    "Loki Prime": {},
+    "Loki": { id: 19 },
+    "Loki Prime": { id: 20 },
     
-    "Mag": {},
-    "Mag Prime": {},
+    "Mag": { id: 21 },
+    "Mag Prime": { id: 22 },
     
-    "Mesa": {},
+    "Mesa": { id: 23 },
     
-    "Mirage": {},
+    "Mirage": { id: 24 },
     
-    "Nekros": {},
-    "Nekros Prime": {},
+    "Nekros": { id: 25 },
+    "Nekros Prime": { id: 26 },
     
-    "Nezha": {},
+    "Nezha": { id: 27 },
     
-    "Nidus": {},
+    "Nidus": { id: 28 },
     
-    "Nova": {},
-    "Nova Prime": {},
+    "Nova": { id: 29 },
+    "Nova Prime": { id: 30 },
     
-    "Nyx": {},
-    "Nyx Prime": {},
+    "Nyx": { id: 31 },
+    "Nyx Prime": { id: 32 },
     
-    "Oberon": {},
-    "Oberon Prime": {},
+    "Oberon": { id: 33 },
+    "Oberon Prime": { id: 34 },
     
-    "Octavia": {},
+    "Octavia": { id: 35 },
     
-    "Rhino": {},
-    "Rhino Prime": {},
+    "Rhino": { id: 36 },
+    "Rhino Prime": { id: 37 },
     
-    "Saryn": {},
-    "Saryn Prime": {},
+    "Saryn": { id: 38 },
+    "Saryn Prime": { id: 39 },
     
-    "Titania": {},
+    "Titania": { id: 40 },
     
-    "Trinity": {},
-    "Trinity Prime": {},
+    "Trinity": { id: 41 },
+    "Trinity Prime": { id: 42 },
     
-    "Valkyr": {},
-    "Valkyr Prime": {},
+    "Valkyr": { id: 43 },
+    "Valkyr Prime": { id: 44 },
     
-    "Vauban": {},
-    "Vauban Prime": {},
+    "Vauban": { id: 45 },
+    "Vauban Prime": { id: 46 },
     
-    "Volt": {},
-    "Volt Prime": {},
+    "Volt": { id: 47 },
+    "Volt Prime": { id: 48 },
     
-    "Wukong": {},
+    "Wukong": { id: 49 },
     
-    "Zephyr": {}
+    "Zephyr": { id: 50 }
 }

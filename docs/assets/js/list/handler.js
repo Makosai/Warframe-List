@@ -7,6 +7,25 @@ function crafted(item) {
     }
 }
 
+function toggleOrokin(elem, obj) {
+    obj.orokin = !obj.orokin;
+    elem.css('background-position', obj.orokin ? 'center top' : 'center bottom');
+    
+    if(!obj.crafted) {
+        var input = elem.parent().parent().find('input');   
+        input.prop('checked', true);
+        obj.crafted = true;
+    }
+}
+
+function refreshOrokin(elem, obj) {
+    if(!obj.orokin) {
+        elem.css('background-position', 'center bottom');
+    } else {
+        elem.css('background-position', 'center top');
+    }
+}
+
 function refreshForma(elem, obj) {
     if(obj.forma <= 0) {
         elem.css('background-position', 'center bottom');
@@ -22,7 +41,7 @@ function incForma(max, elem, obj) {
     }
     
     if(!obj.crafted) {
-        var input = elem.parent().find('input');   
+        var input = elem.parent().parent().find('input');   
         input.prop('checked', true);
         obj.crafted = true;
     }
@@ -49,8 +68,19 @@ function exportAll() {
 
 // Loads the query data back into the JSON.
 function loadData(obj, name) {
-    if(parsedQuery.hasOwnProperty(strip(name) + 'Crafted')) {
-        obj.crafted = true;
+    if(parsedQuery.hasOwnProperty(obj.id)) {
+        var query = parsedQuery[obj.id];
+        obj.crafted = query.substr(0, 1) == '1' ? true : false;
+        obj.forma = parseInt(query.substr(1, 2));
+        obj.orokin = query.substr(3, 1) == '1' ? true : false;
+    }
+}
+
+function pad(num, len) {
+    if(num.toString().length < len) {
+        return ('0').repeat(len - num.toString().length) + num;
+    } else {
+        return num;
     }
 }
 

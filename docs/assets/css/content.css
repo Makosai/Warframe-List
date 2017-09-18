@@ -83,6 +83,17 @@ span {
   margin:0px 7px 0px 24px;
 }
 
+.orokin-catalyst {
+  background-position:center top;
+  display:inline-block;
+  width:50px;
+  height:33px;
+  background-size:50px;
+  background-image:url(../img/Orokin_Catalyst.png);
+  background-repeat:no-repeat;
+  margin:0px 7px 0px 24px;
+}
+
 .forma {
   background-position:center top;
   display:inline-block;
@@ -101,5 +112,20 @@ span {
 
 tr {
   user-select:none;
+}
+
+.forma-holder {
+  display:inline-block;
+}
+
+.orokin-holder {
+  display:inline-block;
+}
+
+.lens-holder {
+  display:inline-block;
+}
+
+#archmelee-content {
 }
 
