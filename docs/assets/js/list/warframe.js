@@ -93,6 +93,7 @@ function loadWarframes() {
         $(boxCell).find('.forma').html('x' + warframe.forma);
         refreshForma(formaObj, warframe);
         refreshOrokin(orokinObj, warframe);
+        exportWarframes();
     });
 }
 

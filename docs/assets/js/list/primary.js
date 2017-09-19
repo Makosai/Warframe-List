@@ -58,7 +58,7 @@ function loadPrimaryWeapons() {
         });
         
         $(boxCell).find('.forma-down').click(function() {
-            decForma(MIN_FORMA, formaObj, priamry);
+            decForma(MIN_FORMA, formaObj, primary);
             refreshForma(formaObj, primary);
             exportPrimaryWeapons();
             return false;
@@ -93,6 +93,7 @@ function loadPrimaryWeapons() {
         $(boxCell).find('.forma').html('x' + primary.forma);
         refreshForma(formaObj, primary);
         refreshOrokin(orokinObj, primary);
+        exportPrimaryWeapons();
     });
 }
 
